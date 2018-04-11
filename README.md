@@ -16,7 +16,7 @@ Requirements:
 yum -y install clamav-scanner-systemd and clamav-server-systemd clamav-update
 ```
 
-3) 3 files are required: a tmpfile (clamd-scanonaccess-tmpfiles.conf), a systemd unit file (clamd@scanonaccess.service) and configuration file (scanonaccess.conf.systemd). Install each one to its respective places.
+3) Three files are required: a tmpfile (clamd-scanonaccess-tmpfiles.conf), a systemd unit file (clamd@scanonaccess.service) and configuration file (scanonaccess.conf.systemd). Install each one to its respective places.
 
 ```
 install -m 0644 clamd@scanonaccess.service /usr/lib/systemd/system/name.service
@@ -26,7 +26,7 @@ install -m 0644 scanonaccess.conf.systemd /etc/clamd.d/scanonaccess.conf
 install -m 0644 clamd.scanonaccess-tmpfiles.conf /usr/lib/tmpfiles.d/clamd-scanonaccess.conf
 ```
 
-4) Edit /etc/clamd.d/scanonaccess.conf and define the directories to be monitored (OnAccessIncludePath, you can define several lines with OnAccessIncludePath).
+4) Edit /etc/clamd.d/scanonaccess.conf and define the directories to be monitored (OnAccessIncludePath, you can define several lines with OnAccessIncludePath). It's imperative root is used as user for clamd.
 
 5) Create directory /run/clamd.scanonaccess (the tmpfile will take care of doing it during next boot):
 
