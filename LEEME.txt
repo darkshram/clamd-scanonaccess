@@ -1,0 +1,45 @@
+Configuración de ClamAV para supervisión de sistema de archivos sobre demanda.
+=====
+Autor de este documento: Joel Barrios
+Email: darksrham en gmail.com
+
+Requisitos:
+
+  - Kernel de Linux >= 3.8 compilado con CONFIG_FANOTIFY=y y CONFIG_FANOTIFY_ACCESS_PERMISSIONS=y
+  - ClamAV >= 0.99.0
+
+1) En la configuración de ClamAV se definirá uno o más directorios a supervisar (OnAccessIncludePath). Puede usarse para supervisar directorios compartidos a través de Samba o bien simplemente supervisar /home o /home/usuario/Descargas.
+
+2) Instalar paquetes clamav-scanner-systemd y clamav-server-systemd y clamav-update.
+
+yum -y install clamav-scanner-systemd y clamav-server-systemd clamav-update
+
+3) Se requieren 3 archivos: tmpfile (clamd-scanonaccess-tmpfiles.conf), systemd unit (clamd@scanonaccess.service) y configuración (scanonaccess.conf.systemd). Instalar cada cada uno a sus lugares respectivos.
+
+install -m 0644 clamd@scanonaccess.service /usr/lib/systemd/system/name.service
+
+install -m 0644 scanonaccess.conf.systemd /etc/clamd.d/scanonaccess.conf
+
+install -m 0644 clamd.scanonaccess-tmpfiles.conf /usr/lib/tmpfiles.d/clamd-scanonaccess.conf
+
+4) Editar /etc/clamd.d/scanonaccess.conf y definir los directorios a supervisar (OnAccessIncludePath, se pueden definir varias líneas con OnAccessIncludePath).
+
+5) Crear directorio /run/clamd.scanonaccess:
+
+mkdir -m 0710 /run/clamd.scanonaccess
+chgrp clamupdate /run/clamd.scanonaccess
+
+Archivo tmpfile se encargará de hacerlo durante siguiente aranque.
+
+6) Actualizar unidades en systemd, habilitar e iniciar servicio:
+systemctl daemon-reload
+systemctl enable clamd@scanonaccess
+systemctl start clamd@scanonaccess
+
+7) Registro de actividad estará en /var/log/clamd-scanonaccess.log. Deje abierto con tail -f para realizar pruebas.
+
+tail -f /var/log/clamd-scanonaccess.log
+
+8) Pruebe el servicio intentando subir a través de Samba archivos con virus mientras se mira el archivo de registro. Los archivos infectados serán subidos como archivos vacíos.
+
+Fuente: https://blog.clamav.net/2016/03/configuring-on-access-scanning-in-clamav.html
