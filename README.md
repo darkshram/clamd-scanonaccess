@@ -3,6 +3,8 @@ ClamAV configuration for filesystem scanning on demand.
 Author of this document: Joel Barrios
 Email: darksrham on gmail.com
 
+Please note this configuration is meant and recomended only for file servers (Samba) and desktop setups.
+
 Requirements:
 
   - Linux Kernel> = 3.8 compiled with CONFIG_FANOTIFY = y and CONFIG_FANOTIFY_ACCESS_PERMISSIONS = y
