@@ -1,6 +1,8 @@
 ClamAV configuration for filesystem scanning on demand.
 =====
+
 Author of this document: Joel Barrios
+
 Email: darksrham on gmail.com
 
 Please note this configuration is meant and recomended only for file servers (Samba) and desktop setups.
