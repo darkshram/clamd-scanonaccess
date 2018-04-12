@@ -1,0 +1,6 @@
+start on runlevel [345] and starting local
+
+stop  on runlevel [!345]
+
+respawn
+exec /usr/sbin/clamd -c /etc/clamd.d/scanonaccess.conf --foreground=yes
