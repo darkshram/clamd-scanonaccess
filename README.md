@@ -39,8 +39,8 @@ chgrp clamupdate /run/clamd.scanonaccess
 
 ```
 systemctl daemon-reload
-systemctl enable clamd @ scanonaccess
-systemctl start clamd @ scanonaccess
+systemctl enable clamd@scanonaccess
+systemctl start clamd@scanonaccess
 ```
 
 7) Activity record will be in /var/log/clamd-scanonaccess.log. Leave open with tail -f to perform tests.
