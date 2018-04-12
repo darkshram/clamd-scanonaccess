@@ -26,7 +26,7 @@ install -m 0644 scanonaccess.conf.systemd /etc/clamd.d/scanonaccess.conf
 install -m 0644 clamd.scanonaccess-tmpfiles.conf /usr/lib/tmpfiles.d/clamd-scanonaccess.conf
 ```
 
-4) Edit /etc/clamd.d/scanonaccess.conf and define the directories to be monitored (OnAccessIncludePath, you can define several lines with OnAccessIncludePath). It's imperative root is used as user for clamd.
+4) Edit /etc/clamd.d/scanonaccess.conf and define the directories to be monitored (OnAccessIncludePath, you can define several lines with OnAccessIncludePath). It's imperative root is used as user for clamd (User root) and I recommned use only official signatures published by the ClamAV project to avoid false positives (OfficialDatabaseOnly yes).
 
 5) Create directory /run/clamd.scanonaccess (the tmpfile will take care of doing it during next boot):
 
