@@ -6,6 +6,7 @@ LogRotate yes
 ExtendedDetectionInfo yes
 TemporaryDirectory /var/tmp
 DatabaseDirectory /var/lib/clamav
+OfficialDatabaseOnly yes
 LocalSocket /run/clamd.scanonaccess/clamd.sock
 LocalSocketGroup root
 LocalSocketMode 660
