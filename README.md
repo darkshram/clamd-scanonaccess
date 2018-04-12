@@ -9,7 +9,7 @@ Please note this configuration is meant and recomended only for file servers (Sa
 
 Requirements:
 
-  - Linux Kernel> = 3.8 compiled with CONFIG_FANOTIFY = y and CONFIG_FANOTIFY_ACCESS_PERMISSIONS = y
+  - Linux Kernel >= 3.8 compiled with CONFIG_FANOTIFY=y and CONFIG_FANOTIFY_ACCESS_PERMISSIONS=y
   - ClamAV> = 0.99.0
 
 1) In the ClamAV configuration, one or more directories to be monitored will be defined (OnAccessIncludePath). It can be used to monitor shared directories through Samba or simply monitor /home or /home/user/Downloads.
